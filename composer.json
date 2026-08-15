@@ -3,6 +3,10 @@
     "description": "Alrex School of Driving management system",
     "type": "project",
     "require": {
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "ext-mysqli": "*",
+        "ext-curl": "*",
+        "ext-openssl": "*",
+        "ext-mbstring": "*"
     }
 }
