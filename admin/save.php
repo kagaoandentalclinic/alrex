@@ -60,7 +60,7 @@ if (isset($_POST['save'])) {
         $existingUserRows = mysqli_num_rows($checkUsernameQuery);
         if ($existingUserRows >= 1) {
             echo "<script>alert('User account already registered.')</script>";
-            echo "<script>window.location.href = 'http://localhost/Alrex_System/admin/login.php';</script>";
+            echo "<script>window.location.href = '" . base_url . "admin/login.php';</script>";
             exit;
         }
     }
@@ -166,7 +166,7 @@ if (isset($_POST['save'])) {
         mysqli_query($conn, "INSERT INTO `users` (`firstname`, `middlename`, `lastname`, `sufix`, `username`, `password`, `type`, `status`, `date_added`, `dob`, `sex`, `number`, `idnumber`, `age`, `civil`, `address`, `zip`, `email`, `studentpermit`, `license`, `verifycode`) VALUES('$firstname', '$middlename', '$lastname', '', '$username', '$password', '$type', '0', NOW(), '$dob', '$sex', '$number', '', '$age', '$civil', '$fullAddress', '$zip', '', '', '', '$randomNumber')") or die(mysqli_error($conn));
 
         echo "<script>alert('Successfully sent OTP. Please click Verify Account to experience Alrex Driving School!')</script>";
-        echo "<script>window.location.href = 'http://localhost/Alrex_System/admin/login.php';</script>";
+        echo "<script>window.location.href = '" . base_url . "admin/login.php';</script>";
     }
 }
 ?>

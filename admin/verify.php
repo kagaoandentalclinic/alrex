@@ -150,7 +150,7 @@ if (isset($_POST['save'])) {
 
             
             echo "<script>alert('User account successfully verified!')</script>";
-            echo "<script>window.location.href = 'http://localhost/Alrex_System/admin/login.php';</script>";
+            echo "<script>window.location.href = '" . base_url . "admin/login.php';</script>";
         } else {
 
 
@@ -159,7 +159,7 @@ if (isset($_POST['save'])) {
 
 
             echo "<script>alert('Invalid verification code. Please try again. Make sure the email is register check your email')</script>";
-                 echo "<script>window.location.href = 'http://localhost/Alrex_System/admin/login.php';</script>";
+                 echo "<script>window.location.href = '" . base_url . "admin/login.php';</script>";
         }
     }
 }
