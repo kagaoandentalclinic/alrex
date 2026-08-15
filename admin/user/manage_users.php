@@ -257,7 +257,7 @@
   <div class="flex-container">
   <div class="form-group">
 
-    <input type="text" name="clientid" id="clientid" class="form-control form-control-border" placeholder="Juan D. Dela Cruz" value ="<?php echo ucwords($_settings->userdata('id')) ?>" hidden >
+    <input type="text" name="clientid" id="clientid" class="form-control form-control-border" placeholder="Juan D. Dela Cruz" value ="<?php echo ucwords($_settings->userdata('id') ?? '') ?>" hidden >
   </div>
 
   <div class="form-group" style="width: 80%;">

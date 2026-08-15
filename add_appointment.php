@@ -100,7 +100,7 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
 <div class="flex-container">
 <div class="form-group">
 
-  <input type="text" name="clientid" id="clientid" class="form-control form-control-border" placeholder="Juan D. Dela Cruz" value ="<?php echo ucwords($_settings->userdata('id')) ?>" hidden >
+  <input type="text" name="clientid" id="clientid" class="form-control form-control-border" placeholder="Juan D. Dela Cruz" value ="<?php echo ucwords($_settings->userdata('id') ?? '') ?>" hidden >
 </div>
 
 <div class="form-group" style="width: 80%;">
@@ -135,19 +135,19 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
     <div class="col-12 col-sm-4 col-md-4">
         <div class="form-group">
             <label>Birth Date</label>
-            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('dob')) ?>" readonly>
+            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('dob') ?? '') ?>" readonly>
         </div>
     </div>
     <div class="col-12 col-sm-4 col-md-4">
         <div class="form-group">
             <label>Civil Status</label>
-            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('civil')) ?>" readonly>
+            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('civil') ?? '') ?>" readonly>
         </div>
     </div>
     <div class="col-12 col-sm-4 col-md-4">
         <div class="form-group">
             <label>Sex</label>
-            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('sex')) ?>" readonly>
+            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('sex') ?? '') ?>" readonly>
         </div>
     </div>
 </div>
@@ -156,7 +156,7 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
     <div class="col-12 col-sm-4 col-md-4">
         <div class="form-group">
             <label>Contact</label>
-            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('number')) ?>" readonly>
+            <input type="text" class="form-control form-control-border" value="<?php echo ucwords($_settings->userdata('number') ?? '') ?>" readonly>
         </div>
     </div>
     <div class="col-12 col-sm-8 col-md-8">
@@ -292,13 +292,13 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
  <div class="flex-container">
      <div class="form-group">
                         <label for="stud_permit" class="control-label">STUDENT PERMIT NUMBER</label>
-                        <input type="text" name="stud_permit" id="stud_permit" class="form-control form-control-border" placeholder="(e.g.F123456789)" value ="<?php echo ucwords($_settings->userdata('studentpermit')) ?>" required>
+                        <input type="text" name="stud_permit" id="stud_permit" class="form-control form-control-border" placeholder="(e.g.F123456789)" value ="<?php echo ucwords($_settings->userdata('studentpermit') ?? '') ?>" required>
                     </div>
 
  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp; 
      <div class="form-group">
                         <label for="license" class="control-label">DRIVER`S LICENSE NUMBER</label>
-                        <input type="text" name="license" id="license" class="form-control form-control-border" placeholder="N08888888" value ="<?php echo ucwords($_settings->userdata('license')) ?>" required>
+                        <input type="text" name="license" id="license" class="form-control form-control-border" placeholder="N08888888" value ="<?php echo ucwords($_settings->userdata('license') ?? '') ?>" required>
                     </div>
 </div> 
 
