@@ -308,9 +308,8 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
 
 
 
-<p>*Any payments made by the applicant, once they are paid, is <B>NONREFUNDABLE</B></p>
-<br>
-<p style="color: red;">Note: leave it blank if not applicable</p>
+<p>*Any payments made by the applicant, once they are paid, is <b>NONREFUNDABLE</b>.<br>
+<span style="color: red;">Note: leave it blank if not applicable</span></p>
 
 
 
