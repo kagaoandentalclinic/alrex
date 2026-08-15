@@ -1,0 +1,25 @@
+# Dependency / build output
+/vendor/composer/
+composer.lock
+
+# Local env overrides (create this on your own machine / Railway dashboard, never commit it)
+.env
+.env.local
+
+# Generated cache
+/uploads/barangay_cache/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Kilo Code agent worktrees (already excluded via .git/info/exclude, kept here too for portability)
+.kilo/worktrees/
+.kilo/agent-manager.json
+.kilocode/worktrees/
+.kilocode/agent-manager.json
+
+# Duplicate nested project copy left over in this working dir - not the deployed app
+/Alrex_System/

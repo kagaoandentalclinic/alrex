@@ -1,0 +1,748 @@
+/* =============================================================
+   ALREX School of Driving — Modern UI Polish
+   dist/css/modern.css
+   Loaded after adminlte.css and custom.css.
+   Rules here ONLY add/enhance — never remove existing structure.
+
+   COLOUR PALETTE
+   --alrex-blue:       #1a73b8   primary brand blue (matches login page)
+   --alrex-blue-dark:  #1565a0   darker shade
+   --alrex-blue-light: #2196f3   lighter / gradient highlight
+   --alrex-amber:      #ffc107   accent / CTA highlight
+   ============================================================= */
+
+/* Global colour tokens */
+:root {
+    --alrex-blue:       #1a73b8;
+    --alrex-blue-dark:  #1565a0;
+    --alrex-blue-light: #2196f3;
+    --alrex-amber:      #ffc107;
+}
+
+/* -------------------------------------------------------------
+   1. BASE / TYPOGRAPHY
+   ------------------------------------------------------------- */
+body,
+.navbar,
+.nav-link,
+.btn,
+.card,
+.card-body,
+.card-title,
+.card-text,
+footer,
+h1, h2, h3, h4, h5, h6,
+p, span, label, input, select, textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Smooth page-level transitions feel */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+/* -------------------------------------------------------------
+   2. TOP UTILITY BAR (#login-nav)
+   ------------------------------------------------------------- */
+#login-nav {
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.10) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: #ffffff !important;
+    font-size: 0.82rem;
+}
+
+#login-nav a {
+    color: #333 !important;
+    transition: color 0.2s ease;
+}
+
+#login-nav a:hover {
+    color: #1a73b8 !important;
+}
+
+#student-img-avatar {
+    border-radius: 50%;
+    border: 2px solid #1a73b8;
+    transition: transform 0.2s ease;
+}
+
+#student-img-avatar:hover {
+    transform: scale(1.1);
+}
+
+
+/* -------------------------------------------------------------
+   3. MAIN NAVBAR (#top-Nav)
+   ------------------------------------------------------------- */
+#top-Nav {
+    background-color: darkblue !important;   /* matches login page navbar */
+    box-shadow: 0 2px 12px rgba(0, 0, 139, 0.4) !important;
+    border-bottom: none !important;
+}
+
+/* Brand name */
+#top-Nav .navbar-brand span {
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    color: #ffffff !important;
+}
+
+/* Nav links — replace the translateX jump with a smooth underline */
+#top-Nav .nav-link {
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.55rem 0.9rem !important;
+    position: relative;
+    transform: none !important;           /* cancel existing translateX hover */
+    transition: color 0.22s ease !important;
+    background-color: transparent !important;
+}
+
+#top-Nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 0;
+    height: 2px;
+    background: #ffc107;
+    border-radius: 2px;
+    transition: width 0.25s ease, left 0.25s ease;
+}
+
+#top-Nav .nav-link:hover,
+#top-Nav .nav-link.active {
+    color: #ffffff !important;
+    transform: none !important;
+    background-color: transparent !important;
+}
+
+#top-Nav .nav-link:hover::after,
+#top-Nav .nav-link.active::after {
+    width: 60%;
+    left: 20%;
+}
+
+/* Login button — pill style */
+#top-Nav .navbar-no-expand a.btn {
+    color: #ffffff !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+    border-radius: 50px !important;
+    padding: 0.3rem 1.25rem !important;
+    font-size: 0.83rem !important;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease !important;
+    background-color: transparent !important;
+}
+
+#top-Nav .navbar-no-expand a.btn:hover {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #1a73b8 !important;
+    box-shadow: 0 4px 14px rgba(255, 193, 7, 0.35) !important;
+}
+
+
+/* -------------------------------------------------------------
+   4. HERO SECTION (#header / #header:before)
+   ------------------------------------------------------------- */
+
+/* Taller hero — more cinematic */
+#header {
+    height: 85vh !important;
+    min-height: 480px;
+}
+
+/* No colour overlay on hero — show background image as-is */
+#header::after {
+    display: none;
+}
+
+/* Ensure all hero content sits above the overlay */
+#header > div {
+    z-index: 2 !important;
+    position: relative;
+    gap: 0.75rem;
+}
+
+/* LTO Accredited badge pill */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #28a745;
+    border: 1.5px solid #28a745;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 0.35rem 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* Site title refinements */
+.site-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 4.5em !important;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8) !important;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+}
+
+/* Site subtitle refinements */
+.site-subtitle {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 1.35em !important;
+    letter-spacing: 0.04em;
+    opacity: 0.90;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7) !important;
+    margin-bottom: 0.25rem;
+}
+
+/* Hero action buttons row */
+.hero-actions {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.btn-hero-primary {
+    background: #28a745 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 0.7rem 2rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.40) !important;
+    transition: background-color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.btn-hero-primary:hover {
+    background: #218838 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 28px rgba(40, 167, 69, 0.55) !important;
+    color: #ffffff !important;
+}
+
+.btn-hero-outline {
+    background: #28a745 !important;
+    color: #ffffff !important;
+    border: 2px solid #28a745 !important;
+    border-radius: 50px !important;
+    padding: 0.7rem 2rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(4px);
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.18s ease !important;
+    text-decoration: none !important;
+}
+
+.btn-hero-outline:hover {
+    background: #218838 !important;
+    border-color: #218838 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Bouncing scroll hint arrow at bottom of hero */
+#header {
+    overflow: hidden;
+}
+
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.3rem;
+    z-index: 3;
+    animation: hero-bounce 2.2s ease-in-out infinite;
+    cursor: default;
+    pointer-events: none;
+}
+
+@keyframes hero-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.55; }
+    50%       { transform: translateX(-50%) translateY(8px); opacity: 0.85; }
+}
+
+/* Mobile hero */
+@media (max-width: 768px) {
+    #header { height: 70vh !important; }
+    .site-title  { font-size: 2.6em !important; }
+    .site-subtitle { font-size: 1.1em !important; }
+    .hero-actions { flex-direction: column; align-items: center; gap: 0.6rem; }
+    .btn-hero-primary,
+    .btn-hero-outline { width: 100%; max-width: 280px; text-align: center; }
+}
+
+
+/* -------------------------------------------------------------
+   5. HOME HERO BANNER (.alrex-hero-banner)
+   ------------------------------------------------------------- */
+.alrex-hero-banner {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 24px rgba(13, 27, 42, 0.22) !important;
+    padding: 3.5em 2em !important;
+    margin-bottom: 0 !important;
+    width: 100%;
+}
+
+/* Let the banner container stretch to fill the flex section */
+.layout-top-nav section.content > .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.alrex-hero-banner h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.alrex-hero-banner p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+}
+
+
+/* -------------------------------------------------------------
+   6. CARDS (.card)
+   ------------------------------------------------------------- */
+.card {
+    border-radius: 12px !important;
+    border: 1px solid rgba(0, 0, 0, 0.07) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13) !important;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* Car/service item cards */
+.car-item {
+    border-radius: 10px !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease !important;
+}
+
+.car-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* -------------------------------------------------------------
+   7. BUTTONS (.btn)
+   ------------------------------------------------------------- */
+.btn {
+    border-radius: 50px !important;
+    font-weight: 500;
+    font-size: 0.87rem;
+    letter-spacing: 0.02em;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease !important;
+}
+
+.btn:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none !important;
+}
+
+/* Keep flat/icon buttons natural */
+.btn-flat {
+    box-shadow: none !important;
+    border-radius: 50px !important;
+}
+
+
+/* -------------------------------------------------------------
+   8. SERVICES PAGE — LIST GROUP ITEMS
+   ------------------------------------------------------------- */
+.list-group-item {
+    border-radius: 8px !important;
+    margin-bottom: 0.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.list-group-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09) !important;
+}
+
+/* First/last item rounding in stacked groups */
+.list-group-item:first-child {
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+.list-group-item:last-child {
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+}
+
+
+/* -------------------------------------------------------------
+   9. FOOTER (.main-footer)
+   ------------------------------------------------------------- */
+footer.main-footer {
+    /* Reset any AdminLTE sidebar offset (250px left margin in default layout) */
+    margin-left: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    padding: 1rem 0 !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem !important;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    border-top: 3px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+footer.main-footer strong,
+footer.main-footer b {
+    font-weight: 600;
+}
+
+footer.main-footer .float-right {
+    opacity: 0.85;
+}
+
+
+/* -------------------------------------------------------------
+   10. CONTENT WRAPPER — fill available height, no dead gray gaps
+   ------------------------------------------------------------- */
+
+/* Public-facing pages use layout-top-nav. Make the wrapper a
+   flex column so the inner section can stretch to fill it. */
+.layout-top-nav .content-wrapper {
+    background-color: #f0f3f6 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 0 !important;
+}
+
+.layout-top-nav section.content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;               /* vertically centre content in leftover space */
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* Remove the bottom gap between the last section and the footer */
+.layout-top-nav .content-wrapper > section.content:last-child {
+    padding-bottom: 2rem;
+}
+
+/* Ensure the hero #header sits flush at the top (no extra gap above it) */
+#header {
+    margin-top: 0 !important;
+    top: 0 !important;
+}
+
+/* Section headings */
+.content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #1a2a4a;
+    letter-spacing: 0.01em;
+}
+
+.content hr {
+    border-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+
+/* -------------------------------------------------------------
+   11. FORM CONTROLS — subtle polish
+   ------------------------------------------------------------- */
+.form-control {
+    border-radius: 8px !important;
+    border-color: #d0d7e2 !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.form-control:focus {
+    border-color: #1a73b8 !important;
+    box-shadow: 0 0 0 3px rgba(26, 115, 184, 0.12) !important;
+}
+
+.custom-select {
+    border-radius: 8px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+}
+
+
+/* -------------------------------------------------------------
+   13. HOME PAGE — Feature Cards, Steps, CTA Band
+   ------------------------------------------------------------- */
+
+/* Shared section spacing & typography */
+.home-section {
+    padding: 3.5rem 0 2rem;
+}
+
+.home-section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: #1a73b8;
+    text-align: center;
+    margin-bottom: 0.4rem;
+}
+
+.home-section-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* --- Feature cards (Section 1) --- */
+.feature-card {
+    border-top: 4px solid #ffc107 !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+    padding: 0.5rem;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14) !important;
+}
+
+.icon-circle {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1565a0, #2196f3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(13, 27, 42, 0.28);
+}
+
+.icon-circle i {
+    font-size: 1.6rem;
+    color: #ffc107;
+}
+
+.feature-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #1a73b8;
+    margin-bottom: 0.5rem;
+}
+
+.feature-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.87rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* --- Steps section (Section 2) --- */
+.steps-section {
+    background: #f4f6f9;
+    border-radius: 16px;
+    padding: 3rem 2rem !important;
+    margin-bottom: 0.5rem;
+}
+
+.step-col {
+    position: relative;
+}
+
+.step-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1565a0, #2196f3);
+    color: #ffc107;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 4px 14px rgba(13, 27, 42, 0.25);
+    position: relative;
+    z-index: 1;
+}
+
+/* Horizontal connector line between step badges (desktop only) */
+.step-col:not(:last-child) .step-badge::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: calc(100% + 2rem);   /* bridge to next column */
+    height: 2px;
+    background: linear-gradient(to right, #ffc107, rgba(255,193,7,0.2));
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.step-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1a73b8;
+    margin-bottom: 0.4rem;
+}
+
+.step-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.6;
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+/* --- CTA Band (Section 3) --- */
+.cta-band {
+    background: linear-gradient(135deg, #1565a0 0%, #2196f3 100%);
+    border-radius: 16px;
+    margin-top: 2rem;
+    padding: 3.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 6px 28px rgba(13, 27, 42, 0.25);
+}
+
+.cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.cta-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.75rem;
+}
+
+.btn-cta {
+    background: #ffc107 !important;
+    color: #1a73b8 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 0.75rem 2.25rem !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 18px rgba(255, 193, 7, 0.4) !important;
+    transition: background-color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease !important;
+}
+
+.btn-cta:hover {
+    background: #ffca2c !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 26px rgba(255, 193, 7, 0.55) !important;
+    color: #1a73b8 !important;
+}
+
+/* Hide step connectors on mobile — columns stack vertically */
+@media (max-width: 767px) {
+    .step-col .step-badge::after {
+        display: none;
+    }
+    .steps-section {
+        padding: 2rem 1rem !important;
+    }
+    .cta-title {
+        font-size: 1.4rem;
+    }
+    .home-section-title {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* -------------------------------------------------------------
+   12. RESPONSIVE — tighten up on mobile
+   ------------------------------------------------------------- */
+@media (max-width: 576px) {
+    .site-title {
+        font-size: 1.8em !important;
+    }
+
+    .site-subtitle {
+        font-size: 1em !important;
+    }
+
+    .alrex-hero-banner {
+        padding: 1.5em 1em !important;
+        border-radius: 8px !important;
+    }
+
+    .alrex-hero-banner h2 {
+        font-size: 1.3rem;
+    }
+
+    footer.main-footer {
+        text-align: center;
+        font-size: 0.78rem !important;
+    }
+
+    footer.main-footer .float-right {
+        float: none !important;
+        display: block;
+        margin-top: 0.25rem;
+    }
+}
