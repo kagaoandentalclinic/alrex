@@ -506,6 +506,16 @@ $sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
 			$_POST['dl'] = '';
 		}
 
+		// These columns are NOT NULL with no default, but nothing in the
+		// booking form sets them - they're filled in later by staff
+		// (medical result, payment status, assigned instructor). Without
+		// this, a new appointment's INSERT fails under strict SQL mode.
+		if(empty($_POST['id'])){
+			foreach(['medical' => '', 'payment' => 0, 'instructor_id' => '', 'instructor_name' => '', 'delete_flag' => 0] as $field => $default){
+				if(!isset($_POST[$field])) $_POST[$field] = $default;
+			}
+		}
+
 		extract($this->sanitize_post($_POST));
 		$data = "";
 		foreach($_POST as $k =>$v){
