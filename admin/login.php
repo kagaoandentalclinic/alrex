@@ -413,7 +413,7 @@ $(function(){
         }
         var _btn = $(this).prop('disabled', true).text('Sending...');
         $.post('forgot_password.php', {step: 'request', username: username}, function(resp){
-            $('#fp-msg').html('<div class="alert alert-info">' + resp.message + '</div>');
+            $('#fp-msg').html('<div class="alert alert-info">' + resp.message + (resp.debug ? ' [' + resp.debug + ']' : '') + '</div>');
             if(resp.status === 'sent'){
                 $('#fp-step1').hide();
                 $('#fp-step2').show();

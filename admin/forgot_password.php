@@ -76,13 +76,15 @@ if ($step === 'request') {
             </body></html>';
             $mail->send();
         } catch (Exception $e) {
-            // Swallow send failures - response stays generic either way.
+            $mailError = $e->getMessage(); // TEMP - remove once root cause is found
         }
     }
 
     // Always respond the same way, whether or not the account exists,
     // so this endpoint can't be used to enumerate registered emails.
-    echo json_encode(['status' => 'sent', 'message' => 'If that email is registered, a reset code has been sent.']);
+    $response = ['status' => 'sent', 'message' => 'If that email is registered, a reset code has been sent.'];
+    if (isset($mailError)) $response['debug'] = $mailError;
+    echo json_encode($response);
     exit;
 }
 
