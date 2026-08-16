@@ -398,6 +398,14 @@ $del = $this->conn->query("UPDATE `appointment_list` set `status` = '4' where co
 
 	function save_appointment(){
 
+		// The time picker posts 12-hour values like "08:00 am", but the
+		// `time` column needs MySQL's HH:MM:SS format - strict SQL mode
+		// (Railway's MySQL 8) rejects the raw value outright.
+		if(!empty($_POST['time'])){
+			$parsed_time = strtotime($_POST['time']);
+			if($parsed_time !== false) $_POST['time'] = date('H:i:s', $parsed_time);
+		}
+
 extract($this->sanitize_post($_POST));
 
 		// Phase 5: Server-side age check (min age: 17)
@@ -897,6 +905,12 @@ function update_appointment_status_admit(){
 
 
 function update_appointment_statuss(){
+		// Same 12-hour to MySQL TIME conversion as save_appointment().
+		if(!empty($_POST['time'])){
+			$parsed_time = strtotime($_POST['time']);
+			if($parsed_time !== false) $_POST['time'] = date('H:i:s', $parsed_time);
+		}
+
 		extract($this->sanitize_post($_POST));
 
 
