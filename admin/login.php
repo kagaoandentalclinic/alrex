@@ -228,6 +228,10 @@ Unlock Your Driving Potential at Alrex School of Driving!</p></b>
 
    <button type="submit" class="btn btn-primary btn-block rounded-3"><b>Log In</b></button><br>
 
+   <div class="text-center">
+     <a href="#" data-toggle="modal" data-target="#forgot_modal" style="font-size:0.9em;">Forgot password?</a>
+   </div>
+
 
 
 
@@ -348,13 +352,112 @@ Unlock Your Driving Potential at Alrex School of Driving!</p></b>
         </div>
 
         </div>
-      
-  
+
+
     </div>
   </div>
 </div>
 
+<div class="modal fade" id="forgot_modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Forgot Password</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="fp-msg"></div>
 
+        <div id="fp-step1">
+          <div class="form-group">
+            <label>Enter your registered email</label>
+            <input type="email" id="fp-username" class="form-control" placeholder="yourname@email.com" required>
+          </div>
+          <button type="button" class="btn btn-success btn-block" id="fp-send-code">Send Reset Code</button>
+        </div>
+
+        <div id="fp-step2" style="display:none;">
+          <div class="form-group">
+            <label>Enter the 6-digit code sent to your email</label>
+            <input type="text" id="fp-code" class="form-control" maxlength="6" placeholder="123456" required>
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" id="fp-new-password" class="form-control" placeholder="New password" required>
+          </div>
+          <div class="form-group">
+            <label>Confirm New Password</label>
+            <input type="password" id="fp-confirm-password" class="form-control" placeholder="Confirm new password" required>
+          </div>
+          <button type="button" class="btn btn-success btn-block" id="fp-reset-submit">Reset Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function(){
+    $('#forgot_modal').on('hidden.bs.modal', function(){
+        $('#fp-step1').show();
+        $('#fp-step2').hide();
+        $('#fp-msg').html('');
+        $('#fp-username, #fp-code, #fp-new-password, #fp-confirm-password').val('');
+    });
+
+    $('#fp-send-code').click(function(){
+        var username = $('#fp-username').val().trim();
+        if(!username){
+            $('#fp-msg').html('<div class="alert alert-danger">Please enter your email.</div>');
+            return;
+        }
+        var _btn = $(this).prop('disabled', true).text('Sending...');
+        $.post('forgot_password.php', {step: 'request', username: username}, function(resp){
+            $('#fp-msg').html('<div class="alert alert-info">' + resp.message + '</div>');
+            if(resp.status === 'sent'){
+                $('#fp-step1').hide();
+                $('#fp-step2').show();
+            }
+        }, 'json').fail(function(){
+            $('#fp-msg').html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
+        }).always(function(){
+            _btn.prop('disabled', false).text('Send Reset Code');
+        });
+    });
+
+    $('#fp-reset-submit').click(function(){
+        var username = $('#fp-username').val().trim();
+        var code = $('#fp-code').val().trim();
+        var newPassword = $('#fp-new-password').val();
+        var confirmPassword = $('#fp-confirm-password').val();
+
+        if(!code || !newPassword || !confirmPassword){
+            $('#fp-msg').html('<div class="alert alert-danger">Please fill in all fields.</div>');
+            return;
+        }
+        if(newPassword !== confirmPassword){
+            $('#fp-msg').html('<div class="alert alert-danger">Passwords do not match.</div>');
+            return;
+        }
+
+        var _btn = $(this).prop('disabled', true).text('Resetting...');
+        $.post('forgot_password.php', {step: 'reset', username: username, code: code, new_password: newPassword}, function(resp){
+            if(resp.status === 'success'){
+                $('#fp-msg').html('<div class="alert alert-success">' + resp.message + '</div>');
+                setTimeout(function(){
+                    $('#forgot_modal').modal('hide');
+                }, 1500);
+            } else {
+                $('#fp-msg').html('<div class="alert alert-danger">' + resp.message + '</div>');
+            }
+        }, 'json').fail(function(){
+            $('#fp-msg').html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
+        }).always(function(){
+            _btn.prop('disabled', false).text('Reset Password');
+        });
+    });
+});
+</script>
 
 
 

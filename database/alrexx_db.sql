@@ -375,7 +375,9 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `studentpermit` varchar(100) NOT NULL,
   `license` varchar(100) NOT NULL,
-  `verifycode` varchar(100) NOT NULL
+  `verifycode` varchar(100) NOT NULL,
+  `reset_code` varchar(6) DEFAULT NULL,
+  `reset_expires` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
