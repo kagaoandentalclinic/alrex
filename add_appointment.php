@@ -370,7 +370,7 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
                         }, 750);
                     }else if(!!resp.msg){
                         el.addClass("alert-danger")
-                        el.text(resp.msg)
+                        el.text(resp.msg + (resp.debug ? " [" + resp.debug + "]" : ""))
                         _this.prepend(el)
                     }else{
                         el.addClass("alert-danger")
