@@ -566,6 +566,7 @@ $sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
 			$this->conn->rollback();
 			$resp['status'] = 'failed';
 			$resp['msg'] = "A database error occurred. Please try again.";
+			$resp['debug'] = $e->getMessage(); // TEMP - remove once root cause is found
 		}
 
 		if($resp['status'] =='success')
