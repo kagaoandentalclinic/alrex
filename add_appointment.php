@@ -111,20 +111,9 @@ ALREX DRIVING SCHOOL APPOINTMENT FORM<BR></U>
 <div class="form-group">
   <label>Address</label>
   <div class="form-row">
-    <div class="col-md-4">
-      <label class="small text-muted mb-0">Province</label>
-      <input type="text" class="form-control form-control-border mb-1" value="<?= htmlspecialchars($_settings->userdata('province') ?? '') ?>" readonly>
+    <div class="col-md-8">
+      <input type="text" class="form-control form-control-border mb-1" value="<?= htmlspecialchars($_settings->userdata('address') ?? '') ?>" readonly>
     </div>
-    <div class="col-md-4">
-      <label class="small text-muted mb-0">Municipality / City</label>
-      <input type="text" class="form-control form-control-border mb-1" value="<?= htmlspecialchars($_settings->userdata('city') ?? '') ?>" readonly>
-    </div>
-    <div class="col-md-4">
-      <label class="small text-muted mb-0">Barangay</label>
-      <input type="text" class="form-control form-control-border mb-1" value="<?= htmlspecialchars($_settings->userdata('barangay') ?? '') ?>" readonly>
-    </div>
-  </div>
-  <div class="form-row mt-1">
     <div class="col-md-4">
       <input type="text" id="appt-zip" class="form-control form-control-border" placeholder="Zip Code" readonly value="<?= htmlspecialchars($_settings->userdata('zip') ?? '') ?>">
     </div>

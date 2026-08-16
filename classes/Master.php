@@ -494,7 +494,18 @@ $sched_set_qry = $this->conn->query("SELECT * FROM `schedule_settings`");
 				}
 			}
 		}
-		$_POST['service_ids'] = implode(",", $_POST['service_id']);
+		$_POST['service_ids'] = implode(",", $_POST['service_id'] ?? []);
+		unset($_POST['service_id']);
+
+		// `dl` is a multi-select (dl[]) but the column holds one string - the
+		// dynamic INSERT builder below skips arrays entirely, so without this
+		// the NOT NULL `dl` column never gets a value and the insert fails.
+		if(isset($_POST['dl']) && is_array($_POST['dl'])){
+			$_POST['dl'] = implode(",", $_POST['dl']);
+		}elseif(!isset($_POST['dl'])){
+			$_POST['dl'] = '';
+		}
+
 		extract($this->sanitize_post($_POST));
 		$data = "";
 		foreach($_POST as $k =>$v){
