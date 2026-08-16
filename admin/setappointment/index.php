@@ -14,7 +14,7 @@
 </style>
 
 
-<?php 
+<?php
 $wheres= "clientid = '" . $_settings->userdata('id') . "'";
 $appointments = $conn->query("SELECT * FROM `appointment_list` where `status` in (0,1) and $wheres and date(schedule) >= '".date("Y-m-d")."' ");
 $appoinment_arr = [];
@@ -22,6 +22,16 @@ while($row = $appointments->fetch_assoc()){
     if(!isset($appoinment_arr[$row['schedule']])) $appoinment_arr[$row['schedule']] = 0;
     $appoinment_arr[$row['schedule']] += 1;
 }
+
+// Same day_schedule setting Master.php's save_appointment() validates against -
+// the calendar was showing every day (including weekends) as bookable, then
+// failing server-side once actually submitted.
+$sched_set_qry = $conn->query("SELECT * FROM `schedule_settings`");
+$sched_set = array_column($sched_set_qry->fetch_all(MYSQLI_ASSOC), 'meta_value', 'meta_field');
+$day_name_to_num = ['sunday'=>0,'monday'=>1,'tuesday'=>2,'wednesday'=>3,'thursday'=>4,'friday'=>5,'saturday'=>6];
+$open_days = array_map('trim', explode(',', strtolower($sched_set['day_schedule'] ?? '')));
+$open_days_num = array_values(array_intersect_key($day_name_to_num, array_flip($open_days)));
+$closed_days_num = array_values(array_diff(array_values($day_name_to_num), $open_days_num));
 ?>
 <div class="content">
     <div class="row justify-content-center">
@@ -50,6 +60,8 @@ while($row = $appointments->fetch_assoc()){
         let maxAppointment = <?= $_settings->info('max_appointment') ?>; // Assuming $_settings->info('max_appointment') retrieves the value
 
         let text = maxAppointment > 0 ? "available" : "not available";
+        let openDays = <?= json_encode($open_days_num) ?>;
+        let closedDays = <?= json_encode($closed_days_num) ?>;
 
         calendar = new Calendar(document.getElementById('appointmentCalendar'), {
             headerToolbar: {
@@ -58,11 +70,15 @@ while($row = $appointments->fetch_assoc()){
             },
             selectable: true,
             themeSystem: 'bootstrap',
-            // Random default events
             events: [
                 {
-                    daysOfWeek: [0,1,2,3,4,5,6], // these recurrent events move separately
+                    daysOfWeek: openDays, // these recurrent events move separately
                     title: text, // Set the text value here
+                    allDay: true,
+                },
+                {
+                    daysOfWeek: closedDays,
+                    title: "not available",
                     allDay: true,
                 }
             ],
